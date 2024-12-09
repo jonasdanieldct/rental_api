@@ -1,0 +1,36 @@
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: rental_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: jddc
+      MYSQL_DATABASE: rental_db
+      MYSQL_USER: jddc
+      MYSQL_PASSWORD: jddc
+    ports:
+      - "3320:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - flyway-network
+    # Flyway container
+  flyway:
+    image: flyway/flyway:latest
+    container_name: flyway
+    command: -url=jdbc:mysql://db:3306/rental_db -user=jddc -password=jddc migrate
+    networks:
+      - flyway-network
+    depends_on:
+      - db
+    volumes:
+      - ./sql:/flyway/sql
+
+
+volumes:
+  db_data:
+
+networks:
+  flyway-network:
+    driver: bridge
