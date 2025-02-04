@@ -1,6 +1,6 @@
 package com.jddc.rental_api.service;
 
-import com.jddc.rental_api.model.User;
+import com.jddc.rental_api.model.UserEntity;
 import com.jddc.rental_api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
         return "UserService.testService()";
     }
 
-    public User saveUser(User user){
-        return userRepository.save(user);
+    public UserEntity saveUser(UserEntity userEntity){
+        return userRepository.save(userEntity);
     }
 }

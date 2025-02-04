@@ -1,7 +1,7 @@
 package com.jddc.rental_api.controller;
 
 
-import com.jddc.rental_api.model.User;
+import com.jddc.rental_api.model.UserEntity;
 import com.jddc.rental_api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +20,8 @@ public class UserController {
     }
 
     @GetMapping("/save")
-    public User testApi(@RequestBody User user){
-        return userService.saveUser(user);
+    public UserEntity testApi(@RequestBody UserEntity userEntity){
+        return userService.saveUser(userEntity);
     }
 
 }
